@@ -1,0 +1,20 @@
+Button:hover {
+    -fx-border-color: #9cffe2;
+}
+
+ListView .scroll-bar {
+    -fx-background-color: black;
+}
+
+ListView .scroll-bar .thumb {
+    -fx-background-color: #1c1c1c;
+}
+
+ListView .cell {
+    -fx-background-color: black;
+    -fx-font-weight: bold;
+}
+
+ListView, GridPane {
+    -fx-border-color: #1c1c1c;
+}
