@@ -14,7 +14,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -27,8 +26,6 @@ public class GameService {
     private static Map<Number, Integer> numberOfNonDropsThisGame = new LinkedHashMap<>();
     private static Map<Number, Map<Number, Integer>> numberOfDropsFollowingNumbers = new LinkedHashMap<>();
 
-    private static UUID gameId = UUID.randomUUID();
-
     private static String folderData = "/data";
     private static String numbersJsonName = "numbers.json";
     private static String numberOfDropsJsonName = "numberOfDrops.json";
@@ -37,30 +34,44 @@ public class GameService {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void init() throws IOException {
-        //Получение всех чисел из файла numbers.json и заполнение списка jsonNumbers
-        List<Number> jsonNumbers = getNumbersFromJson();
-
-        //Заполнение списка numbers
-        jsonNumbers.forEach(a -> numbers.put(a.getName(), a));
-
+        //Инициализация списка numbers
+        initNumbers();
         //Инициализация списка numberOfDropsThisGame
-        jsonNumbers.forEach(a -> numberOfDropsThisGame.put(a, 0));
-
+        initNumberOfDropsThisGame();
         //Инициализация списка numberOfDrops
+        initNumberOfDrops();
+        //Инициализация списка numberOfNonDropsThisGame
+        initNumberOfNonDropsThisGame();
+        //Инициализация списка numberOfDropsFollowingNumbers
+        initNumberOfDropsFollowingNumbers();
+    }
+
+    private static void initNumbers() throws IOException {
+        List<Number> jsonNumbers = getNumbersFromJson();
+        jsonNumbers.forEach(a -> numbers.put(a.getName(), a));
+    }
+
+    private static void initNumberOfDropsThisGame() {
+        numbers.values().forEach(a -> numberOfDropsThisGame.put(a, 0));
+    }
+
+    private static void initNumberOfDrops() throws IOException {
         numberOfDrops = getNumberOfDropsFromJson();
         if (numberOfDrops.isEmpty()) {
-            jsonNumbers.forEach(a -> numberOfDrops.put(a, 0));
+            numbers.values().forEach(a -> numberOfDrops.put(a, 0));
         }
+    }
 
-        //Инициализация списка numberOfNonDropsThisGame
-        jsonNumbers.forEach(a -> numberOfNonDropsThisGame.put(a, 0));
+    private static void initNumberOfNonDropsThisGame() {
+        numbers.values().forEach(a -> numberOfNonDropsThisGame.put(a, 0));
+    }
 
-        //Получение всех чисел из файла numberOfDropsFollowingNumbers.json и заполнение списка numberOfDropsFollowingNumbers
+    private static void initNumberOfDropsFollowingNumbers() throws IOException {
         numberOfDropsFollowingNumbers = getNumberOfDropsFollowingNumbersFromJson();
         if (numberOfDropsFollowingNumbers.isEmpty()) {
-            jsonNumbers.forEach(a -> {
+            numbers.values().forEach(a -> {
                 Map<Number, Integer> temp = new LinkedHashMap<>();
-                jsonNumbers.forEach(b -> temp.put(b, 0));
+                numbers.values().forEach(b -> temp.put(b, 0));
                 numberOfDropsFollowingNumbers.put(a, temp);
             });
         }
@@ -209,5 +220,22 @@ public class GameService {
 
         //Очистка списка numberOfNonDropsThisGame
         numberOfNonDropsThisGame.entrySet().forEach(a -> a.setValue(0));
+    }
+
+    public static void newGame() throws IOException {
+        //Очистка списка historyThisGame
+        historyThisGame.clear();
+
+        //Очистка списка numberOfDropsThisGame
+        numberOfDropsThisGame.entrySet().forEach(a -> a.setValue(0));
+
+        //Повторная инициализация списка numberOfDrops
+        initNumberOfDrops();
+
+        //Очистка списка numberOfNonDropsThisGame
+        numberOfNonDropsThisGame.entrySet().forEach(a -> a.setValue(0));
+
+        //Повторная инициализация списка numberOfDropsFollowingNumbers
+        initNumberOfDropsFollowingNumbers();
     }
 }

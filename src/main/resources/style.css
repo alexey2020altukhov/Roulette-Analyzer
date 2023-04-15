@@ -2,6 +2,10 @@ Button:hover {
     -fx-border-color: #9cffe2;
 }
 
+ListView {
+    -fx-border-color: #1c1c1c;
+}
+
 ListView .scroll-bar {
     -fx-background-color: black;
 }
@@ -15,6 +19,44 @@ ListView .cell {
     -fx-font-weight: bold;
 }
 
-ListView, GridPane {
+GridPane {
     -fx-border-color: #1c1c1c;
+}
+
+MenuBar {
+    -fx-background-color: black;
+    -fx-border-color: #1c1c1c;
+    -fx-border-width: 2 0 2 0;
+}
+
+.menu {
+    -fx-background-color: black;
+    -fx-border-color: black;
+}
+
+.menu .label:hover {
+    -fx-text-fill: #9cffe2;
+}
+
+.menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-background-color: black;
+    -fx-border-color: black;
+}
+
+/*.context-menu .menu-item:hover .menu-item .label {*/
+/*    -fx-text-fill: #9cffe2;*/
+/*}*/
+
+.menu .menu-item:hover .label{
+    -fx-text-fill: #9cffe2;
+}
+
+.context-menu {
+    -fx-background-color: black;
+    -fx-border-color: #1c1c1c;
+    -fx-border-width: 2 0 2 0;
 }

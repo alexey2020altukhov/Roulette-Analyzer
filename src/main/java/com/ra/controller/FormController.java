@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -145,7 +147,13 @@ public class FormController {
     private Button bback;
 
     @FXML
-    private Button bSaveGame;
+    private MenuItem mSaveGame;
+
+    @FXML
+    private MenuItem mNewGame;
+
+    @FXML
+    private Menu mSettings;
 
     @FXML
     private ListView<String> historyThisGameLV;
@@ -361,10 +369,22 @@ public class FormController {
     }
 
     @FXML
-    void onClickBSaveGame(MouseEvent event) throws IOException {
+    void onActionMSaveGame(ActionEvent event) throws IOException {
         GameService.saveGame();
         historyThisGameLV.getItems().clear();
         updateStatistics();
+    }
+
+    @FXML
+    void onActionMNewGame(ActionEvent event) throws IOException {
+        GameService.newGame();
+        historyThisGameLV.getItems().clear();
+        updateStatistics();
+    }
+
+    @FXML
+    void onActionMSettings(ActionEvent event) {
+
     }
 
     @FXML

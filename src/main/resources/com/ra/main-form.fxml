@@ -2,7 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -10,200 +15,200 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="492.0" style="-fx-background-color: black;" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ra.controller.FormController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="492.0" style="-fx-background-color: black;" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ra.controller.FormController">
    <children>
-      <Button fx:id="b00" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="33.0" mnemonicParsing="false" onAction="#onClickB00" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #00b300;" text="00" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b00" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="72.0" mnemonicParsing="false" onAction="#onClickB00" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #00b300;" text="00" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b0" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="66.0" mnemonicParsing="false" onAction="#onClickB0" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #00b300;" text="0" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b0" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="105.0" mnemonicParsing="false" onAction="#onClickB0" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #00b300;" text="0" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b3" contentDisplay="CENTER" layoutX="70.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB3" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="3" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b3" contentDisplay="CENTER" layoutX="93.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB3" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="3" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b2" contentDisplay="CENTER" layoutX="70.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB2" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="2" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b2" contentDisplay="CENTER" layoutX="93.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB2" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="2" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b1" contentDisplay="CENTER" layoutX="70.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB1" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="1" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b1" contentDisplay="CENTER" layoutX="93.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB1" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="1" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b6" contentDisplay="CENTER" layoutX="102.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB6" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="6" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b6" contentDisplay="CENTER" layoutX="125.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB6" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="6" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b5" contentDisplay="CENTER" layoutX="102.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB5" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="5" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b5" contentDisplay="CENTER" layoutX="125.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB5" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="5" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b4" contentDisplay="CENTER" layoutX="102.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB4" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="4" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b4" contentDisplay="CENTER" layoutX="125.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB4" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="4" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b9" contentDisplay="CENTER" layoutX="134.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB9" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="9" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b9" contentDisplay="CENTER" layoutX="157.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB9" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="9" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b8" contentDisplay="CENTER" layoutX="134.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB8" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="8" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b8" contentDisplay="CENTER" layoutX="157.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB8" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="8" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b7" contentDisplay="CENTER" layoutX="134.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB7" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="7" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b7" contentDisplay="CENTER" layoutX="157.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB7" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="7" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b12" contentDisplay="CENTER" layoutX="166.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB12" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="12" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b12" contentDisplay="CENTER" layoutX="189.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB12" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="12" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b11" contentDisplay="CENTER" layoutX="166.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB11" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="11" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b11" contentDisplay="CENTER" layoutX="189.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB11" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="11" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b10" contentDisplay="CENTER" layoutX="166.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB10" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="10" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b10" contentDisplay="CENTER" layoutX="189.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB10" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="10" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b15" contentDisplay="CENTER" layoutX="198.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB15" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="15" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b15" contentDisplay="CENTER" layoutX="221.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB15" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="15" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b14" contentDisplay="CENTER" layoutX="198.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB14" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="14" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b14" contentDisplay="CENTER" layoutX="221.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB14" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="14" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b13" contentDisplay="CENTER" layoutX="198.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB13" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="13" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b13" contentDisplay="CENTER" layoutX="221.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB13" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="13" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b18" contentDisplay="CENTER" layoutX="230.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB18" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="18" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b18" contentDisplay="CENTER" layoutX="253.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB18" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="18" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b17" contentDisplay="CENTER" layoutX="230.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB17" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="17" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b17" contentDisplay="CENTER" layoutX="253.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB17" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="17" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b16" contentDisplay="CENTER" layoutX="230.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB16" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="16" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b16" contentDisplay="CENTER" layoutX="253.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB16" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="16" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b21" contentDisplay="CENTER" layoutX="262.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB21" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="21" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b21" contentDisplay="CENTER" layoutX="285.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB21" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="21" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b20" contentDisplay="CENTER" layoutX="262.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB20" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="20" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b20" contentDisplay="CENTER" layoutX="285.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB20" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="20" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b19" contentDisplay="CENTER" layoutX="262.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB19" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="19" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b19" contentDisplay="CENTER" layoutX="285.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB19" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="19" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b24" contentDisplay="CENTER" layoutX="294.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB24" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="24" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b24" contentDisplay="CENTER" layoutX="317.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB24" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="24" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b23" contentDisplay="CENTER" layoutX="294.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB23" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="23" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b23" contentDisplay="CENTER" layoutX="317.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB23" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="23" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b22" contentDisplay="CENTER" layoutX="294.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB22" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="22" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b22" contentDisplay="CENTER" layoutX="317.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB22" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="22" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b27" contentDisplay="CENTER" layoutX="326.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB27" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="27" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b27" contentDisplay="CENTER" layoutX="349.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB27" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="27" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b26" contentDisplay="CENTER" layoutX="326.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB26" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="26" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b26" contentDisplay="CENTER" layoutX="349.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB26" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="26" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b25" contentDisplay="CENTER" layoutX="326.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB25" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="25" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b25" contentDisplay="CENTER" layoutX="349.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB25" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="25" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b30" contentDisplay="CENTER" layoutX="358.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB30" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="30" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b30" contentDisplay="CENTER" layoutX="381.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB30" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="30" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b29" contentDisplay="CENTER" layoutX="358.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB29" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="29" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b29" contentDisplay="CENTER" layoutX="381.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB29" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="29" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b28" contentDisplay="CENTER" layoutX="358.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB28" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="28" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b28" contentDisplay="CENTER" layoutX="381.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB28" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="28" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b33" contentDisplay="CENTER" layoutX="390.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB33" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="33" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b33" contentDisplay="CENTER" layoutX="413.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB33" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="33" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b32" contentDisplay="CENTER" layoutX="390.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB32" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="32" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b32" contentDisplay="CENTER" layoutX="413.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB32" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="32" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b31" contentDisplay="CENTER" layoutX="390.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB31" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="31" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b31" contentDisplay="CENTER" layoutX="413.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB31" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="31" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b36" contentDisplay="CENTER" layoutX="422.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#onClickB36" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="36" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b36" contentDisplay="CENTER" layoutX="445.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#onClickB36" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="36" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b35" contentDisplay="CENTER" layoutX="422.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onClickB35" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="35" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b35" contentDisplay="CENTER" layoutX="445.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#onClickB35" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #383838;" text="35" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="b34" contentDisplay="CENTER" layoutX="422.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onClickB34" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="34" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="b34" contentDisplay="CENTER" layoutX="445.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onClickB34" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #E00006;" text="34" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
       <ListView fx:id="historyThisGameLV" layoutX="14.0" layoutY="377.0" prefHeight="338.0" prefWidth="53.0" style="-fx-background-color: black;" />
-      <Button fx:id="bback" contentDisplay="CENTER" layoutX="14.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#onClickBBack" prefHeight="28.0" prefWidth="39.0" style="-fx-background-color: #1c1c1c;" text="&lt;&lt;" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="bback" contentDisplay="CENTER" layoutX="19.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#onClickBBack" prefHeight="28.0" prefWidth="35.0" style="-fx-background-color: #1c1c1c;" text="&lt;&lt;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="11.0" />
          </font>
@@ -215,11 +220,6 @@
       <Text fill="WHITE" layoutX="91.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Не выпало" />
       <Text fill="WHITE" layoutX="195.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выпало" />
       <Text fill="WHITE" layoutX="292.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Следующее" />
-      <Button fx:id="bSaveGame" contentDisplay="CENTER" layoutX="367.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#onClickBSaveGame" prefHeight="28.0" prefWidth="107.0" style="-fx-background-color: #1c1c1c;" text="Сохранить игру" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
       <ListView fx:id="numberOfDropsLV" layoutX="395.0" layoutY="377.0" prefHeight="338.0" prefWidth="80.0" style="-fx-background-color: black;" />
       <GridPane fx:id="sequencesGP" layoutX="14.0" layoutY="182.0" prefHeight="157.0" prefWidth="461.0" style="-fx-background-color: black;">
         <columnConstraints>
@@ -262,5 +262,51 @@
          </padding>
       </GridPane>
       <Text fill="WHITE" layoutX="399.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выпало (Все)" />
+      <MenuBar layoutX="179.0" layoutY="14.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Игра">
+            <items>
+              <MenuItem fx:id="mSaveGame" mnemonicParsing="false" onAction="#onActionMSaveGame" text="Сохранить" />
+                  <MenuItem fx:id="mNewGame" mnemonicParsing="false" onAction="#onActionMNewGame" text="Новая игра" />
+            </items>
+          </Menu>
+            <Menu fx:id="mSettings" mnemonicParsing="false" onAction="#onActionMSettings" text="Настройки" />
+        </menus>
+      </MenuBar>
+      <Pane prefHeight="746.0" prefWidth="492.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <TextField alignment="CENTER" layoutX="412.0" layoutY="54.0" prefHeight="25.0" prefWidth="42.0" />
+            <Text layoutX="41.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Минимальная длина последовательности" />
+            <Text layoutX="40.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Максимальная длина частей, входящих в последовательность" />
+            <TextField alignment="CENTER" layoutX="411.0" layoutY="124.0" prefHeight="25.0" prefWidth="42.0" />
+            <Text layoutX="40.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Исключить последовательности с одинаковыми значениями" />
+            <CheckBox layoutX="425.0" layoutY="163.0" mnemonicParsing="false" />
+            <Text layoutX="41.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Минимальная длина частей, входящих в последовательность" />
+            <TextField alignment="CENTER" layoutX="412.0" layoutY="89.0" prefHeight="25.0" prefWidth="42.0" />
+            <Text layoutX="40.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Считать 0 и 00 за любое значение" />
+            <CheckBox layoutX="425.0" layoutY="198.0" mnemonicParsing="false" />
+            <Button fx:id="bback1" contentDisplay="CENTER" layoutX="382.0" layoutY="690.0" mnemonicParsing="false" onMouseClicked="#onClickBBack" prefHeight="28.0" prefWidth="89.0" style="-fx-background-color: #1c1c1c;" text="Сохранить" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Text layoutX="40.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Помечать последовательности повышенного риска" />
+            <CheckBox layoutX="425.0" layoutY="233.0" mnemonicParsing="false" />
+            <Text layoutX="40.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Автоматически сохранять игру после выхода" />
+            <CheckBox layoutX="425.0" layoutY="268.0" mnemonicParsing="false" />
+            <Text layoutX="40.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вести лог со статистикой" />
+            <CheckBox layoutX="425.0" layoutY="303.0" mnemonicParsing="false" />
+            <Text layoutX="41.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставки на красное/чёрное" />
+            <CheckBox layoutX="425.0" layoutY="402.0" mnemonicParsing="false" />
+            <Text layoutX="41.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставки на чётное/нечётное" />
+            <Text layoutX="41.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставки на 1-18/19-36" />
+            <Text layoutX="41.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставки на сектора" />
+            <Text layoutX="41.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставки на ряды" />
+            <CheckBox layoutX="425.0" layoutY="437.0" mnemonicParsing="false" />
+            <CheckBox layoutX="425.0" layoutY="472.0" mnemonicParsing="false" />
+            <CheckBox layoutX="425.0" layoutY="507.0" mnemonicParsing="false" />
+            <CheckBox layoutX="425.0" layoutY="542.0" mnemonicParsing="false" />
+         </children>
+      </Pane>
    </children>
 </Pane>
