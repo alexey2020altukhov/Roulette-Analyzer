@@ -13,6 +13,8 @@ public class Sequence<T> {
 
     private int sequenceLength;
 
+    private boolean identicalValues;
+
     private TypeSequence type;
 
     private LinkedList<Number> values;

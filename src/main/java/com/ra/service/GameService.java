@@ -2,9 +2,11 @@ package com.ra.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ra.model.GameSettings;
 import com.ra.model.Number;
 import com.ra.util.FileUtil;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class GameService {
 
     private static Map<String, Number> numbers = new LinkedHashMap<>();
+    @Getter
     private static LinkedList<Number> historyThisGame = new LinkedList<>();
     private static Map<Number, Integer> numberOfDropsThisGame = new LinkedHashMap<>();
     private static Map<Number, Integer> numberOfDrops = new LinkedHashMap<>();
@@ -31,9 +34,17 @@ public class GameService {
     private static String numberOfDropsJsonName = "numberOfDrops.json";
     private static String numberOfDropsFollowingNumbersJsonName = "numberOfDropsFollowingNumbers.json";
 
+    @Getter
+    private static GameSettings gameSettings = new GameSettings();
+
+    private static String folderSettings = "/settings";
+    private static String settingsJsonName = "settings.json";
+
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void init() throws IOException {
+        //Инициализация настроек
+        initSettings();
         //Инициализация списка numbers
         initNumbers();
         //Инициализация списка numberOfDropsThisGame
@@ -44,6 +55,11 @@ public class GameService {
         initNumberOfNonDropsThisGame();
         //Инициализация списка numberOfDropsFollowingNumbers
         initNumberOfDropsFollowingNumbers();
+    }
+
+    private static void initSettings() throws IOException {
+        GameSettings settingsJson = getGameSettingsFromJson();
+        gameSettings = settingsJson == null? gameSettings: settingsJson;
     }
 
     private static void initNumbers() throws IOException {
@@ -75,6 +91,15 @@ public class GameService {
                 numberOfDropsFollowingNumbers.put(a, temp);
             });
         }
+    }
+
+    private static GameSettings getGameSettingsFromJson() throws IOException {
+        File file = FileUtil.getFile(folderSettings.concat("/").concat(settingsJsonName));
+        if (file == null) {
+            return null;
+        }
+        return mapper.readValue(file, new TypeReference<>() {
+        });
     }
 
     private static List<Number> getNumbersFromJson() throws IOException {
@@ -160,10 +185,6 @@ public class GameService {
         }
     }
 
-    public static LinkedList<Number> getHistoryThisGame() {
-        return historyThisGame;
-    }
-
     public static Map<Number, Integer> getNumberOfDropsThisGame() {
         return numberOfDropsThisGame.entrySet().stream()
                 .sorted(Map.Entry.<Number, Integer>comparingByValue().reversed())
@@ -237,5 +258,9 @@ public class GameService {
 
         //Повторная инициализация списка numberOfDropsFollowingNumbers
         initNumberOfDropsFollowingNumbers();
+    }
+
+    public static void saveSettings() throws IOException {
+        FileUtil.saveFile(folderSettings.concat("/").concat(settingsJsonName), gameSettings);
     }
 }

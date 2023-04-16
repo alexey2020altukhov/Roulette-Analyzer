@@ -47,10 +47,6 @@ MenuBar {
     -fx-border-color: black;
 }
 
-/*.context-menu .menu-item:hover .menu-item .label {*/
-/*    -fx-text-fill: #9cffe2;*/
-/*}*/
-
 .menu .menu-item:hover .label{
     -fx-text-fill: #9cffe2;
 }
@@ -59,4 +55,24 @@ MenuBar {
     -fx-background-color: black;
     -fx-border-color: #1c1c1c;
     -fx-border-width: 2 0 2 0;
+}
+
+#bSettings:hover {
+    -fx-text-fill: #9cffe2;
+}
+
+.text-field {
+    -fx-background-color: black;
+    -fx-border-color: #1c1c1c;
+    -fx-text-fill: white;
+}
+
+.check-box .box{
+    -fx-background-color: black;
+    -fx-border-color: #1c1c1c;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    -fx-background-color: white;
 }
