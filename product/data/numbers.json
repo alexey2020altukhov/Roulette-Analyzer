@@ -1,0 +1,344 @@
+[
+  {
+    "order": 1,
+    "name": "00",
+    "colour": "GREEN",
+    "range": null,
+    "parity": null,
+    "sector": null,
+    "row": null
+  },
+  {
+    "order": 2,
+    "name": "0",
+    "colour": "GREEN",
+    "range": null,
+    "parity": null,
+    "sector": null,
+    "row": null
+  },
+  {
+    "order": 3,
+    "name": "1",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "LOWER"
+  },
+  {
+    "order": 4,
+    "name": "2",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 5,
+    "name": "3",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "UPPER"
+  },
+  {
+    "order": 6,
+    "name": "4",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "LOWER"
+  },
+  {
+    "order": 7,
+    "name": "5",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 8,
+    "name": "6",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "UPPER"
+  },
+  {
+    "order": 9,
+    "name": "7",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "LOWER"
+  },
+  {
+    "order": 10,
+    "name": "8",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 11,
+    "name": "9",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "UPPER"
+  },
+  {
+    "order": 12,
+    "name": "10",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "LOWER"
+  },
+  {
+    "order": 13,
+    "name": "11",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "FIRST",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 14,
+    "name": "12",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "FIRST",
+    "row": "UPPER"
+  },
+  {
+    "order": 15,
+    "name": "13",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "LOWER"
+  },
+  {
+    "order": 16,
+    "name": "14",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 17,
+    "name": "15",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "UPPER"
+  },
+  {
+    "order": 18,
+    "name": "16",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "LOWER"
+  },
+  {
+    "order": 19,
+    "name": "17",
+    "colour": "BLACK",
+    "range": "MANQUE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 20,
+    "name": "18",
+    "colour": "RED",
+    "range": "MANQUE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "UPPER"
+  },
+  {
+    "order": 21,
+    "name": "19",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "LOWER"
+  },
+  {
+    "order": 22,
+    "name": "20",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 23,
+    "name": "21",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "UPPER"
+  },
+  {
+    "order": 24,
+    "name": "22",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "LOWER"
+  },
+  {
+    "order": 25,
+    "name": "23",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "SECOND",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 26,
+    "name": "24",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "SECOND",
+    "row": "UPPER"
+  },
+  {
+    "order": 27,
+    "name": "25",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "LOWER"
+  },
+  {
+    "order": 28,
+    "name": "26",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 29,
+    "name": "27",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "UPPER"
+  },
+  {
+    "order": 30,
+    "name": "28",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "LOWER"
+  },
+  {
+    "order": 31,
+    "name": "29",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 32,
+    "name": "30",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "UPPER"
+  },
+  {
+    "order": 33,
+    "name": "31",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "LOWER"
+  },
+  {
+    "order": 34,
+    "name": "32",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 35,
+    "name": "33",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "UPPER"
+  },
+  {
+    "order": 36,
+    "name": "34",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "LOWER"
+  },
+  {
+    "order": 37,
+    "name": "35",
+    "colour": "BLACK",
+    "range": "PASSE",
+    "parity": "ODD",
+    "sector": "THIRD",
+    "row": "MIDDLE"
+  },
+  {
+    "order": 38,
+    "name": "36",
+    "colour": "RED",
+    "range": "PASSE",
+    "parity": "EVEN",
+    "sector": "THIRD",
+    "row": "UPPER"
+  }
+]
