@@ -65,11 +65,21 @@ public class SequenceSearchService {
     public static LinkedList<Sequence<?>> getSequences(LinkedList<Number> history) {
         List<Sequence<?>> sequences = new ArrayList<>();
         if (!history.isEmpty()) {
-            sequences.addAll(searchSequencesColours(history));
-            sequences.addAll(searchSequencesParities(history));
-            sequences.addAll(searchSequencesRanges(history));
-            sequences.addAll(searchSequencesSectors(history));
-            sequences.addAll(searchSequencesRows(history));
+            if (GameService.getGameSettings().isBetColour()) {
+                sequences.addAll(searchSequencesColours(history));
+            }
+            if (GameService.getGameSettings().isBetParity()) {
+                sequences.addAll(searchSequencesParities(history));
+            }
+            if (GameService.getGameSettings().isBetRange()) {
+                sequences.addAll(searchSequencesRanges(history));
+            }
+            if (GameService.getGameSettings().isBetSector()) {
+                sequences.addAll(searchSequencesSectors(history));
+            }
+            if (GameService.getGameSettings().isBetRow()) {
+                sequences.addAll(searchSequencesRows(history));
+            }
         }
         return sequences.stream().filter(a -> a != null && a.getSequenceLength() >= GameService.getGameSettings().getMinSizeCombinations())
                 .distinct()
@@ -250,9 +260,8 @@ public class SequenceSearchService {
                     combinationFinal = new ArrayList<>(combination);
                 }
             }
-
-            List<Sector> sectorBet = null;
             if (combinationFinal != null) {
+                List<Sector> sectorBet;
                 if (combinationFinal.contains(Sector.FIRST) && combinationFinal.contains(Sector.SECOND) &&
                         !combinationFinal.contains(Sector.THIRD)) {
                     sectorBet = List.of(combinationFinal.get(0).equals(Sector.SECOND) ?
@@ -275,16 +284,15 @@ public class SequenceSearchService {
                         sectorBet = List.of(Sector.FIRST, Sector.SECOND);
                     }
                 }
+                long numberUniqueValuesCombination = combination.stream().distinct().count();
+                Sequence<Sector> sequence = new Sequence<Sector>()
+                        .setType(TypeSequence.SECTOR)
+                        .setValues(values)
+                        .setSequenceLength(values.size())
+                        .setBetOn(sectorBet)
+                        .setIdenticalValues(numberUniqueValuesCombination == 1);
+                sequences.add(sequence);
             }
-
-            long numberUniqueValuesCombination = combination.stream().distinct().count();
-            Sequence<Sector> sequence = new Sequence<Sector>()
-                    .setType(TypeSequence.SECTOR)
-                    .setValues(values)
-                    .setSequenceLength(values.size())
-                    .setBetOn(sectorBet)
-                    .setIdenticalValues(numberUniqueValuesCombination == 1);
-            sequences.add(sequence);
         }
         return sequences.stream()
                 .distinct()
@@ -324,8 +332,8 @@ public class SequenceSearchService {
                 }
             }
 
-            List<Row> rowBet = null;
             if (combinationFinal != null) {
+                List<Row> rowBet;
                 if (combinationFinal.contains(Row.LOWER) && combinationFinal.contains(Row.MIDDLE) &&
                         !combinationFinal.contains(Row.UPPER)) {
                     rowBet = List.of(combinationFinal.get(0).equals(Row.MIDDLE) ?
@@ -348,16 +356,15 @@ public class SequenceSearchService {
                         rowBet = List.of(Row.LOWER, Row.MIDDLE);
                     }
                 }
+                long numberUniqueValuesCombination = combination.stream().distinct().count();
+                Sequence<Row> sequence = new Sequence<Row>()
+                        .setType(TypeSequence.ROW)
+                        .setValues(values)
+                        .setSequenceLength(values.size())
+                        .setBetOn(rowBet)
+                        .setIdenticalValues(numberUniqueValuesCombination == 1);
+                sequences.add(sequence);
             }
-
-            long numberUniqueValuesCombination = combination.stream().distinct().count();
-            Sequence<Row> sequence = new Sequence<Row>()
-                    .setType(TypeSequence.ROW)
-                    .setValues(values)
-                    .setSequenceLength(values.size())
-                    .setBetOn(rowBet)
-                    .setIdenticalValues(numberUniqueValuesCombination == 1);
-            sequences.add(sequence);
         }
         return sequences.stream()
                 .distinct()

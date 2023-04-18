@@ -3,14 +3,17 @@ package com.ra.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ra.model.GameSettings;
+import com.ra.model.Log;
 import com.ra.model.Number;
-import com.ra.util.FileUtil;
+import com.ra.model.Sequence;
+import com.ra.util.JsonUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -40,6 +43,10 @@ public class GameService {
     private static String folderSettings = "/settings";
     private static String settingsJsonName = "settings.json";
 
+    private static String folderLog = "/log";
+    private static String logJsonName = "log.json";
+    private static String logTxtName = "log.txt";
+
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void init() throws IOException {
@@ -59,7 +66,7 @@ public class GameService {
 
     private static void initSettings() throws IOException {
         GameSettings settingsJson = getGameSettingsFromJson();
-        gameSettings = settingsJson == null? gameSettings: settingsJson;
+        gameSettings = settingsJson == null ? gameSettings : settingsJson;
     }
 
     private static void initNumbers() throws IOException {
@@ -94,7 +101,7 @@ public class GameService {
     }
 
     private static GameSettings getGameSettingsFromJson() throws IOException {
-        File file = FileUtil.getFile(folderSettings.concat("/").concat(settingsJsonName));
+        File file = JsonUtil.getFile(folderSettings.concat("/").concat(settingsJsonName));
         if (file == null) {
             return null;
         }
@@ -103,12 +110,12 @@ public class GameService {
     }
 
     private static List<Number> getNumbersFromJson() throws IOException {
-        return mapper.readValue(FileUtil.getFile(folderData.concat("/").concat(numbersJsonName)), new TypeReference<>() {
+        return mapper.readValue(JsonUtil.getFile(folderData.concat("/").concat(numbersJsonName)), new TypeReference<>() {
         });
     }
 
     private static Map<Number, Integer> getNumberOfDropsFromJson() throws IOException {
-        File file = FileUtil.getFile(folderData.concat("/").concat(numberOfDropsJsonName));
+        File file = JsonUtil.getFile(folderData.concat("/").concat(numberOfDropsJsonName));
         if (file != null) {
             Map<String, Integer> jsonNumberOfDrops = mapper.readValue(file, new TypeReference<>() {
             });
@@ -119,7 +126,7 @@ public class GameService {
     }
 
     private static Map<Number, Map<Number, Integer>> getNumberOfDropsFollowingNumbersFromJson() throws IOException {
-        File file = FileUtil.getFile(folderData.concat("/").concat(numberOfDropsFollowingNumbersJsonName));
+        File file = JsonUtil.getFile(folderData.concat("/").concat(numberOfDropsFollowingNumbersJsonName));
         if (file != null) {
             Map<String, Map<String, Integer>> jsonNumberOfDropsFollowingNumbers = mapper.readValue(file, new TypeReference<>() {
             });
@@ -131,6 +138,15 @@ public class GameService {
 
         }
         return new LinkedHashMap<>();
+    }
+
+    private static List<Log> getLogFromJson() throws IOException {
+        File file = JsonUtil.getFile(folderLog.concat("/").concat(logJsonName));
+        if (file != null) {
+            return mapper.readValue(file, new TypeReference<>() {
+            });
+        }
+        return new ArrayList<>();
     }
 
     public static Number findNumber(String name) {
@@ -221,7 +237,7 @@ public class GameService {
         //Сохранение данных списка numberOfDrops
         Map<String, Integer> numberOfDropsJson = numberOfDrops.entrySet().stream()
                 .collect(Collectors.toMap(a -> a.getKey().getName(), Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new));
-        FileUtil.saveFile(folderData.concat("/").concat(numberOfDropsJsonName), numberOfDropsJson);
+        JsonUtil.saveFile(folderData.concat("/").concat(numberOfDropsJsonName), numberOfDropsJson);
 
         //Сохранение данных списка numberOfDropsFollowingNumbers
         Map<String, Map<String, Integer>> numberOfDropsFollowingNumbersJson =
@@ -231,7 +247,12 @@ public class GameService {
                                         .collect(Collectors.toMap(b -> b.getKey().getName(),
                                                 Map.Entry::getValue, (b, c) -> b, LinkedHashMap::new)),
                                 (b, c) -> c, LinkedHashMap::new));
-        FileUtil.saveFile(folderData.concat("/").concat(numberOfDropsFollowingNumbersJsonName), numberOfDropsFollowingNumbersJson);
+        JsonUtil.saveFile(folderData.concat("/").concat(numberOfDropsFollowingNumbersJsonName), numberOfDropsFollowingNumbersJson);
+
+        //Сохранение данных в лог
+        if (gameSettings.isStatisticsLog()) {
+            saveLog();
+        }
 
         //Очистка списка historyThisGame
         historyThisGame.clear();
@@ -261,6 +282,74 @@ public class GameService {
     }
 
     public static void saveSettings() throws IOException {
-        FileUtil.saveFile(folderSettings.concat("/").concat(settingsJsonName), gameSettings);
+        JsonUtil.saveFile(folderSettings.concat("/").concat(settingsJsonName), gameSettings);
+    }
+
+    public static void saveLog() throws IOException {
+        List<Log> logList = getLogFromJson();
+        LinkedList<Number> history = new LinkedList<>(historyThisGame);
+        LinkedList<Number> historyTemp = new LinkedList<>();
+
+        while (history.size() > 1) {
+            historyTemp.push(history.removeLast());
+            Number nextNumber = history.getLast();
+            LinkedList<Sequence<?>> sequences = SequenceSearchService.getSequences(historyTemp);
+            for (Sequence<?> sequence : sequences) {
+                Log log = null;
+                int index = 0;
+                boolean exitsInLog = false;
+                while (index < logList.size()) {
+                    Log l = logList.get(index);
+                    if (sequence.getSequenceLength() == l.getSequenceLength() && sequence.getType().equals(l.getTypeSequence())) {
+                        log = new Log(l);
+                        exitsInLog = true;
+                        break;
+                    }
+                    index++;
+                }
+                log = log == null ? new Log().setSequenceLength(sequence.getSequenceLength())
+                        .setTypeSequence(sequence.getType()) : log;
+                log.setTotalGames(log.getTotalGames() + 1);
+
+                switch (sequence.getType()) {
+                    case COLOUR: {
+                        log.setWins(nextNumber.getColour() != null && sequence.getBetOn().contains(nextNumber.getColour()) ?
+                                log.getWins() + 1 : log.getWins());
+                        break;
+                    }
+                    case PARITY: {
+                        log.setWins(nextNumber.getParity() != null && sequence.getBetOn().contains(nextNumber.getParity()) ?
+                                log.getWins() + 1 : log.getWins());
+                        break;
+                    }
+                    case RANGE: {
+                        log.setWins(nextNumber.getRange() != null && sequence.getBetOn().contains(nextNumber.getRange()) ?
+                                log.getWins() + 1 : log.getWins());
+                        break;
+                    }
+                    case SECTOR: {
+                        log.setWins(nextNumber.getSector() != null && sequence.getBetOn().contains(nextNumber.getSector()) ?
+                                log.getWins() + 1 : log.getWins());
+                        break;
+                    }
+                    case ROW: {
+                        log.setWins(nextNumber.getRow() != null && sequence.getBetOn().contains(nextNumber.getRow()) ?
+                                log.getWins() + 1 : log.getWins());
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+                if (exitsInLog) {
+                    logList.set(index, log);
+                } else {
+                    logList.add(log);
+                }
+            }
+        }
+
+        JsonUtil.saveFile(folderLog.concat("/").concat(logJsonName), logList);
+        LogService.saveLogs(folderLog.concat("/".concat(logTxtName)), logList);
     }
 }

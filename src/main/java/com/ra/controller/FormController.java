@@ -35,6 +35,8 @@ import java.util.stream.Collectors;
 
 public class FormController {
 
+    private static final Font font = new Font("Serif", 10);
+
     @FXML
     private ListView<String> historyThisGameLV;
 
@@ -426,15 +428,9 @@ public class FormController {
         for (Sequence<?> sequence : sequences) {
             if (row == sequencesGP.getRowCount()) {
                 break;
-            } 
-            if ((sequence.getType().equals(TypeSequence.COLOUR) && GameService.getGameSettings().isBetColour()) ||
-                    (sequence.getType().equals(TypeSequence.PARITY) && GameService.getGameSettings().isBetParity()) ||
-                    (sequence.getType().equals(TypeSequence.RANGE) && GameService.getGameSettings().isBetRange()) ||
-                    (sequence.getType().equals(TypeSequence.SECTOR) && GameService.getGameSettings().isBetSector()) ||
-                    (sequence.getType().equals(TypeSequence.ROW) && GameService.getGameSettings().isBetRow())) {
-                writeSequenceToRowGP(sequence, row);
-                row++;
             }
+            writeSequenceToRowGP(sequence, row);
+            row++;
         }
     }
 
@@ -442,152 +438,172 @@ public class FormController {
         List<?> betOn = sequence.getBetOn();
         switch (sequence.getType()) {
             case COLOUR: {
-                Colour colourBet1 = (Colour) betOn.get(0);
-                Colour colourBet2 = betOn.size() > 1 ? (Colour) betOn.get(1) : null;
-
-                sequencesGP.add(getLabelLength(sequence), 2, row);
-
-                Label labelBetOn1 = new Label();
-                labelBetOn1.setText(DesignationService.getColorDesignation(colourBet1));
-                labelBetOn1.setTextFill(ColorService.getColorColour(colourBet1));
-                labelBetOn1.setFont(new Font("Serif", 10));
-                sequencesGP.add(labelBetOn1, 0, row);
-
-                if (colourBet2 != null) {
-                    Label labelBetOn2 = new Label();
-                    labelBetOn2.setText(DesignationService.getColorDesignation(colourBet2));
-                    labelBetOn2.setTextFill(ColorService.getColorColour(colourBet2));
-                    labelBetOn2.setFont(new Font("Serif", 10));
-                    sequencesGP.add(labelBetOn2, 1, row);
-                }
-
-                for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
-                    Number value = sequence.getValues().remove();
-                    Label labelValue = new Label();
-                    labelValue.setText(value.getName());
-                    labelValue.setTextFill(ColorService.getColorColour(value.getColour()));
-                    sequencesGP.add(labelValue, j, row);
-                }
+                writeSequenceColorsToRow(sequence, betOn, row);
                 break;
             }
             case PARITY: {
-                Parity parityBet1 = (Parity) betOn.get(0);
-                Parity parityBet2 = betOn.size() > 1 ? (Parity) betOn.get(1) : null;
-
-                sequencesGP.add(getLabelLength(sequence), 2, row);
-
-                Label labelBetOn1 = new Label();
-                labelBetOn1.setText(DesignationService.getParityDesignation(parityBet1));
-                labelBetOn1.setTextFill(ColorService.getColorParity(parityBet1));
-                labelBetOn1.setFont(new Font("Serif", 10));
-                sequencesGP.add(labelBetOn1, 0, row);
-
-                if (parityBet2 != null) {
-                    Label labelBetOn2 = new Label();
-                    labelBetOn2.setText(DesignationService.getParityDesignation(parityBet2));
-                    labelBetOn2.setTextFill(ColorService.getColorParity(parityBet2));
-                    labelBetOn2.setFont(new Font("Serif", 10));
-                    sequencesGP.add(labelBetOn2, 1, row);
-                }
-
-                for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
-                    Number value = sequence.getValues().remove();
-                    Label labelValue = new Label();
-                    labelValue.setText(value.getName());
-                    labelValue.setTextFill(ColorService.getColorParity(value.getParity()));
-                    sequencesGP.add(labelValue, j, row);
-                }
+                writeSequenceParitiesToRow(sequence, betOn, row);
                 break;
             }
             case RANGE: {
-                Range rangeBet1 = (Range) betOn.get(0);
-                Range rangeBet2 = betOn.size() > 1 ? (Range) betOn.get(1) : null;
-
-                sequencesGP.add(getLabelLength(sequence), 2, row);
-
-                Label labelBetOn1 = new Label();
-                labelBetOn1.setText(DesignationService.getRangeDesignation(rangeBet1));
-                labelBetOn1.setTextFill(ColorService.getColorRange(rangeBet1));
-                labelBetOn1.setFont(new Font("Serif", 10));
-                sequencesGP.add(labelBetOn1, 0, row);
-
-                if (rangeBet2 != null) {
-                    Label labelBetOn2 = new Label();
-                    labelBetOn2.setText(DesignationService.getRangeDesignation(rangeBet2));
-                    labelBetOn2.setTextFill(ColorService.getColorRange(rangeBet2));
-                    labelBetOn2.setFont(new Font("Serif", 10));
-                    sequencesGP.add(labelBetOn2, 1, row);
-                }
-
-                for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
-                    Number value = sequence.getValues().remove();
-                    Label labelValue = new Label();
-                    labelValue.setText(value.getName());
-                    labelValue.setTextFill(ColorService.getColorRange(value.getRange()));
-                    sequencesGP.add(labelValue, j, row);
-                }
+                writeSequenceRangesToRow(sequence, betOn, row);
                 break;
             }
             case SECTOR: {
-                Sector sectorBet1 = (Sector) betOn.get(0);
-                Sector sectorBet2 = betOn.size() > 1 ? (Sector) betOn.get(1) : null;
-
-                sequencesGP.add(getLabelLength(sequence), 2, row);
-
-                Label labelBetOn1 = new Label();
-                labelBetOn1.setText(DesignationService.getSectorDesignation(sectorBet1));
-                labelBetOn1.setTextFill(ColorService.getColorSector(sectorBet1));
-                labelBetOn1.setFont(new Font("Serif", 10));
-                sequencesGP.add(labelBetOn1, 0, row);
-
-                if (sectorBet2 != null) {
-                    Label labelBetOn2 = new Label();
-                    labelBetOn2.setText(DesignationService.getSectorDesignation(sectorBet2));
-                    labelBetOn2.setTextFill(ColorService.getColorSector(sectorBet2));
-                    labelBetOn2.setFont(new Font("Serif", 10));
-                    sequencesGP.add(labelBetOn2, 1, row);
-                }
-
-                for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
-                    Number value = sequence.getValues().remove();
-                    Label labelValue = new Label();
-                    labelValue.setText(value.getName());
-                    labelValue.setTextFill(ColorService.getColorSector(value.getSector()));
-                    sequencesGP.add(labelValue, j, row);
-                }
+                writeSequenceSectorsToRow(sequence, betOn, row);
                 break;
             }
             case ROW: {
-                Row rowBet1 = (Row) betOn.get(0);
-                Row rowBet2 = betOn.size() > 1 ? (Row) betOn.get(1) : null;
-
-                sequencesGP.add(getLabelLength(sequence), 2, row);
-
-                Label labelBetOn1 = new Label();
-                labelBetOn1.setText(DesignationService.getRowDesignation(rowBet1));
-                labelBetOn1.setTextFill(ColorService.getColorRow(rowBet1));
-                labelBetOn1.setFont(new Font("Serif", 10));
-                sequencesGP.add(labelBetOn1, 0, row);
-
-                if (rowBet2 != null) {
-                    Label labelBetOn2 = new Label();
-                    labelBetOn2.setText(DesignationService.getRowDesignation(rowBet2));
-                    labelBetOn2.setTextFill(ColorService.getColorRow(rowBet2));
-                    labelBetOn2.setFont(new Font("Serif", 10));
-                    sequencesGP.add(labelBetOn2, 1, row);
-                }
-
-                for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
-                    Number value = sequence.getValues().remove();
-                    Label labelValue = new Label();
-                    labelValue.setText(value.getName());
-                    labelValue.setTextFill(ColorService.getColorRow(value.getRow()));
-                    sequencesGP.add(labelValue, j, row);
-                }
+                writeSequenceRowsToRow(sequence, betOn, row);
                 break;
             }
             default:
                 break;
+        }
+    }
+
+    private void writeSequenceColorsToRow(Sequence<?> sequence, List<?> betOn, int row) {
+        Colour colourBet1 = (Colour) betOn.get(0);
+        Colour colourBet2 = betOn.size() > 1 ? (Colour) betOn.get(1) : null;
+
+        sequencesGP.add(getLabelLength(sequence), 2, row);
+
+        Label labelBetOn1 = new Label();
+        labelBetOn1.setText(DesignationService.getColorDesignation(colourBet1));
+        labelBetOn1.setTextFill(ColorService.getColorColour(colourBet1));
+        labelBetOn1.setFont(font);
+        sequencesGP.add(labelBetOn1, 0, row);
+
+        if (colourBet2 != null) {
+            Label labelBetOn2 = new Label();
+            labelBetOn2.setText(DesignationService.getColorDesignation(colourBet2));
+            labelBetOn2.setTextFill(ColorService.getColorColour(colourBet2));
+            labelBetOn2.setFont(font);
+            sequencesGP.add(labelBetOn2, 1, row);
+        }
+
+        for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
+            Number value = sequence.getValues().remove();
+            Label labelValue = new Label();
+            labelValue.setText(value.getName());
+            labelValue.setTextFill(ColorService.getColorColour(value.getColour()));
+            sequencesGP.add(labelValue, j, row);
+        }
+    }
+
+    private void writeSequenceParitiesToRow(Sequence<?> sequence, List<?> betOn, int row) {
+        Parity parityBet1 = (Parity) betOn.get(0);
+        Parity parityBet2 = betOn.size() > 1 ? (Parity) betOn.get(1) : null;
+
+        sequencesGP.add(getLabelLength(sequence), 2, row);
+
+        Label labelBetOn1 = new Label();
+        labelBetOn1.setText(DesignationService.getParityDesignation(parityBet1));
+        labelBetOn1.setTextFill(ColorService.getColorParity(parityBet1));
+        labelBetOn1.setFont(font);
+        sequencesGP.add(labelBetOn1, 0, row);
+
+        if (parityBet2 != null) {
+            Label labelBetOn2 = new Label();
+            labelBetOn2.setText(DesignationService.getParityDesignation(parityBet2));
+            labelBetOn2.setTextFill(ColorService.getColorParity(parityBet2));
+            labelBetOn2.setFont(font);
+            sequencesGP.add(labelBetOn2, 1, row);
+        }
+
+        for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
+            Number value = sequence.getValues().remove();
+            Label labelValue = new Label();
+            labelValue.setText(value.getName());
+            labelValue.setTextFill(ColorService.getColorParity(value.getParity()));
+            sequencesGP.add(labelValue, j, row);
+        }
+    }
+
+    private void writeSequenceRangesToRow(Sequence<?> sequence, List<?> betOn, int row) {
+        Range rangeBet1 = (Range) betOn.get(0);
+        Range rangeBet2 = betOn.size() > 1 ? (Range) betOn.get(1) : null;
+
+        sequencesGP.add(getLabelLength(sequence), 2, row);
+
+        Label labelBetOn1 = new Label();
+        labelBetOn1.setText(DesignationService.getRangeDesignation(rangeBet1));
+        labelBetOn1.setTextFill(ColorService.getColorRange(rangeBet1));
+        labelBetOn1.setFont(font);
+        sequencesGP.add(labelBetOn1, 0, row);
+
+        if (rangeBet2 != null) {
+            Label labelBetOn2 = new Label();
+            labelBetOn2.setText(DesignationService.getRangeDesignation(rangeBet2));
+            labelBetOn2.setTextFill(ColorService.getColorRange(rangeBet2));
+            labelBetOn2.setFont(font);
+            sequencesGP.add(labelBetOn2, 1, row);
+        }
+
+        for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
+            Number value = sequence.getValues().remove();
+            Label labelValue = new Label();
+            labelValue.setText(value.getName());
+            labelValue.setTextFill(ColorService.getColorRange(value.getRange()));
+            sequencesGP.add(labelValue, j, row);
+        }
+    }
+
+    private void writeSequenceSectorsToRow(Sequence<?> sequence, List<?> betOn, int row) {
+        Sector sectorBet1 = (Sector) betOn.get(0);
+        Sector sectorBet2 = betOn.size() > 1 ? (Sector) betOn.get(1) : null;
+
+        sequencesGP.add(getLabelLength(sequence), 2, row);
+
+        Label labelBetOn1 = new Label();
+        labelBetOn1.setText(DesignationService.getSectorDesignation(sectorBet1));
+        labelBetOn1.setTextFill(ColorService.getColorSector(sectorBet1));
+        labelBetOn1.setFont(font);
+        sequencesGP.add(labelBetOn1, 0, row);
+
+        if (sectorBet2 != null) {
+            Label labelBetOn2 = new Label();
+            labelBetOn2.setText(DesignationService.getSectorDesignation(sectorBet2));
+            labelBetOn2.setTextFill(ColorService.getColorSector(sectorBet2));
+            labelBetOn2.setFont(font);
+            sequencesGP.add(labelBetOn2, 1, row);
+        }
+
+        for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
+            Number value = sequence.getValues().remove();
+            Label labelValue = new Label();
+            labelValue.setText(value.getName());
+            labelValue.setTextFill(ColorService.getColorSector(value.getSector()));
+            sequencesGP.add(labelValue, j, row);
+        }
+    }
+
+    private void writeSequenceRowsToRow(Sequence<?> sequence, List<?> betOn, int row) {
+        Row rowBet1 = (Row) betOn.get(0);
+        Row rowBet2 = betOn.size() > 1 ? (Row) betOn.get(1) : null;
+
+        sequencesGP.add(getLabelLength(sequence), 2, row);
+
+        Label labelBetOn1 = new Label();
+        labelBetOn1.setText(DesignationService.getRowDesignation(rowBet1));
+        labelBetOn1.setTextFill(ColorService.getColorRow(rowBet1));
+        labelBetOn1.setFont(font);
+        sequencesGP.add(labelBetOn1, 0, row);
+
+        if (rowBet2 != null) {
+            Label labelBetOn2 = new Label();
+            labelBetOn2.setText(DesignationService.getRowDesignation(rowBet2));
+            labelBetOn2.setTextFill(ColorService.getColorRow(rowBet2));
+            labelBetOn2.setFont(font);
+            sequencesGP.add(labelBetOn2, 1, row);
+        }
+
+        for (int j = 3; j < sequencesGP.getColumnCount() && !sequence.getValues().isEmpty(); j++) {
+            Number value = sequence.getValues().remove();
+            Label labelValue = new Label();
+            labelValue.setText(value.getName());
+            labelValue.setTextFill(ColorService.getColorRow(value.getRow()));
+            sequencesGP.add(labelValue, j, row);
         }
     }
 
